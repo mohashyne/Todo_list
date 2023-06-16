@@ -4,7 +4,9 @@ import {
   add, render, remove, edit, move,
 } from './module/addremove';
 
-import { TODO, clearAll } from './module/interactive';
+import {
+  TODO, clearAll
+} from './module/interactive';
 
 const addButton = document.querySelector('.add-button');
 addButton.addEventListener('click', () => {
