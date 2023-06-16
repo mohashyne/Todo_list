@@ -95,27 +95,13 @@ var TODO = /*#__PURE__*/function () {
   }]);
   return TODO;
 }();
-var clearAll = function clearAll() {
-  var tasksArray = JSON.parse(localStorage.getItem('tasksArray')) || [];
-  for (var i = 0; i < tasksArray.length; i += 1) {
-    if (tasksArray[i].completed) {
-      tasksArray.splice(i, 1);
-      i -= 1;
-    }
-  }
-  for (var _i = 1; _i <= tasksArray.length; _i += 1) {
-    tasksArray[_i - 1].index = _i;
-  }
-  localStorage.setItem('tasksArray', JSON.stringify(tasksArray));
-};
 module.exports = {
   add: add,
   render: render,
   remove: remove,
   edit: edit,
   move: move,
-  TODO: TODO,
-  clearAll: clearAll
+  TODO: TODO
 };
 
 /***/ }),
@@ -246,7 +232,7 @@ footer:hover {
 .strike-through {
   text-decoration: line-through;
   color: rgba(179, 142, 39, 0.45);
-}`, "",{"version":3,"sources":["webpack://./src/styles/main.scss"],"names":[],"mappings":"AACA;EACE,sBAAA;EACA,SAAA;EACA,UAAA;EACA,2DAAA;EACA,eAAA;AAAF;;AAGA;EACE,2BAAA;EACA,YAAA;EACA,cAAA;AAAF;;AAGA;EACE,SAAA;EACA,UAAA;EACA,2CAAA;AAAF;;AAGA;EACE,YAAA;EACA,aAAA;EACA,2BAAA;AAAF;;AAGA;EACE,kBAAA;EACA,mBAAA;EACA,YAAA;AAAF;;AAGA;;;;EAIE,eAAA;AAAF;;AAGA;EACE,gBAAA;EACA,yBAAA;EACA,iDAAA;AAAF;;AAGA;;;;EAIE,YAAA;EACA,aAAA;EACA,mBAAA;EACA,cAAA;EACA,eAAA;EACA,gBAAA;EACA,aAAA;EACA,iBAAA;EACA,SAAA;EACA,WAAA;EACA,uBAAA;EACA,gBAAA;AAAF;;AAGA;EACE,WAAA;AAAF;;AAGA;EACE,WAAA;AAAF;;AAGA;EACE,UAAA;AAAF;;AAGA;EACE,aAAA;EACA,8BAAA;EACA,8CAAA;AAAF;;AAGA;EACE,gCAAA;EACA,aAAA;EACA,uBAAA;EACA,iCAAA;EACA,mEAAA;AAAF;;AAGA;EACE,sBAAA;EACA,mEAAA;AAAF;;AAGA;EACE,WAAA;EACA,YAAA;AAAF;;AAGA;EACE,YAAA;AAAF;;AAGA;EACE,6BAAA;EACA,+BAAA;AAAF","sourcesContent":["\n* {\n  box-sizing: border-box;\n  margin: 0;\n  padding: 0;\n  font-family: Arial, \"Helvetica Neue\", Helvetica, sans-serif;\n  font-size: 14px;\n}\n\nbody {\n  background-color: lightgray;\n  width: 420px;\n  margin: 0 auto;\n}\n\nhr {\n  margin: 0;\n  padding: 0;\n  border: 1px solid rgba(176, 154, 87, 0.795);\n}\n\ninput {\n  border: none;\n  outline: none;\n  background-color: lightgray;\n}\n\ninput[placeholder] {\n  font-style: italic;\n  border-radius: 10px;\n  padding: 5px;\n}\n\n.delete-task-icon,\n.add-button,\n.checkbox-input,\nfooter {\n  cursor: pointer;\n}\n\n.main {\n  margin-top: 20px;\n  background-color: #cbd5e1;\n  box-shadow: 10px 10px 10px 0 rgba(51, 47, 1, 0.3);\n}\n\nheader,\n.add-list-container,\n.task,\nfooter {\n  height: 50px;\n  display: flex;\n  align-items: center;\n  color: #545862;\n  font-size: 15px;\n  font-weight: 400;\n  padding: 1rem;\n  line-height: 20px;\n  margin: 0;\n  width: 100%;\n  text-overflow: ellipsis;\n  overflow: hidden;\n}\n\n.add-task {\n  width: 100%;\n}\n\n.add-button {\n  width: 18px;\n}\n\n.text-input {\n  width: 85%;\n}\n\n.task {\n  display: flex;\n  justify-content: space-between;\n  box-shadow: 0 4px 6px rgba(238, 203, 137, 0.8);\n}\n\nfooter {\n  border-color: rgb(238, 203, 137);\n  display: flex;\n  justify-content: center;\n  transition: all 150ms ease-in-out;\n  box-shadow: 0 0 40px 40px #cbd5e1 inset, 0 0 0 0 rgb(238, 203, 137);\n}\n\nfooter:hover {\n  color: rgb(67, 66, 14);\n  box-shadow: 0 0 40px 40px #cbd5e1 inset, 0 0 0 0 rgb(238, 203, 137);\n}\n\n.drag-to-order {\n  width: 10px;\n  cursor: move;\n}\n\n.dragging {\n  opacity: 0.5;\n}\n\n.strike-through {\n  text-decoration: line-through;\n  color: rgba(179, 142, 39, 0.45);\n}"],"sourceRoot":""}]);
+}`, "",{"version":3,"sources":["webpack://./src/styles/main.scss"],"names":[],"mappings":"AACA;EACE,sBAAA;EACA,SAAA;EACA,UAAA;EACA,2DAAA;EACA,eAAA;AAAF;;AAGA;EACE,2BAAA;EACA,YAAA;EACA,cAAA;AAAF;;AAGA;EACE,SAAA;EACA,UAAA;EACA,2CAAA;AAAF;;AAGA;EACE,YAAA;EACA,aAAA;EACA,2BAAA;AAAF;;AAGA;EACE,kBAAA;EACA,mBAAA;EACA,YAAA;AAAF;;AAGA;;;;EAIE,eAAA;AAAF;;AAGA;EACE,gBAAA;EACA,yBAAA;EACA,iDAAA;AAAF;;AAGA;;;;EAIE,YAAA;EACA,aAAA;EACA,mBAAA;EACA,cAAA;EACA,eAAA;EACA,gBAAA;EACA,aAAA;EACA,iBAAA;EACA,SAAA;EACA,WAAA;EACA,uBAAA;EACA,gBAAA;AAAF;;AAGA;EACE,WAAA;AAAF;;AAGA;EACE,WAAA;AAAF;;AAGA;EACE,UAAA;AAAF;;AAGA;EACE,aAAA;EACA,8BAAA;EACA,8CAAA;AAAF;;AAGA;EACE,gCAAA;EACA,aAAA;EACA,uBAAA;EACA,iCAAA;EACA,mEAAA;AAAF;;AAGA;EACE,sBAAA;EACA,mEAAA;AAAF;;AAGA;EACE,WAAA;EACA,YAAA;AAAF;;AAGA;EACE,YAAA;AAAF;;AAGA;EACE,6BAAA;EACA,+BAAA;AAAF","sourcesContent":["\n* {\n  box-sizing: border-box;\n  margin: 0;\n  padding: 0;\n  font-family: Arial, \"Helvetica Neue\", Helvetica, sans-serif;\n  font-size: 14px;\n}\n\nbody {\n  background-color: lightgray;\n  width: 420px;\n  margin: 0 auto;\n}\n\nhr {\n  margin: 0;\n  padding: 0;\n  border: 1px solid rgba(176, 154, 87, 0.795);\n}\n\ninput {\n  border: none;\n  outline: none;\n  background-color: lightgray;\n}\n\ninput[placeholder] {\n  font-style: italic;\n  border-radius: 10px;\n  padding: 5px;\n}\n\n.delete-task-icon,\n.add-button,\n.checkbox-input,\nfooter {\n  cursor: pointer;\n}\n\n.main {\n  margin-top: 20px;\n  background-color: #cbd5e1;\n  box-shadow: 10px 10px 10px 0 rgba(51, 47, 1, 0.3);\n}\n\nheader,\n.add-list-container,\n.task,\nfooter {\n  height: 50px;\n  display: flex;\n  align-items: center;\n  color: #545862;\n  font-size: 15px;\n  font-weight: 400;\n  padding: 1rem;\n  line-height: 20px;\n  margin: 0;\n  width: 100%;\n  text-overflow: ellipsis;\n  overflow: hidden;\n}\n\n.add-task {\n  width: 100%;\n}\n\n.add-button {\n  width: 18px;\n}\n\n.text-input {\n  width: 85%;\n}\n\n.task {\n  display: flex;\n  justify-content: space-between;\n  box-shadow: 0 4px 6px rgba(238, 203, 137, 0.8);\n}\n\nfooter {\n  border-color: rgb(238, 203, 137);\n  display: flex;\n  justify-content: center;\n  transition: all 150ms ease-in-out;\n  box-shadow: 0 0 40px 40px #cbd5e1 inset, 0 0 0 0 rgb(238, 203, 137);\n}\n\nfooter:hover {\n  color: rgb(67, 66, 14);\n  box-shadow: 0 0 40px 40px #cbd5e1 inset, 0 0 0 0 rgb(238, 203, 137);\n}\n\n.drag-to-order {\n  width: 10px;\n  cursor: move;\n}\n\n.dragging {\n  opacity: 0.5;\n}\n\n.strike-through {\n  text-decoration: line-through;\n  color: rgba(179, 142, 39, 0.45);\n}\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -851,11 +837,6 @@ tasksContainer.addEventListener('click', function (event) {
     (0,_module_addremove_js__WEBPACK_IMPORTED_MODULE_1__.render)();
   }
 });
-var clearAllButton = document.querySelector('.clear-all-completed');
-clearAllButton.addEventListener('click', function () {
-  (0,_module_addremove_js__WEBPACK_IMPORTED_MODULE_1__.clearAll)();
-  (0,_module_addremove_js__WEBPACK_IMPORTED_MODULE_1__.render)();
-});
 tasksContainer.addEventListener('click', function (event) {
   var deleteTaskIcon = event.target.closest('.delete-task-icon');
   if (deleteTaskIcon) {
@@ -902,4 +883,4 @@ window.onload = _module_addremove_js__WEBPACK_IMPORTED_MODULE_1__.render;
 
 /******/ })()
 ;
-//# sourceMappingURL=bundle86c19674e636a0995a13.js.map
+//# sourceMappingURL=bundle12310f5889760d8494ad.js.map

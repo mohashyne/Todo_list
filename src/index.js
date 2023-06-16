@@ -1,8 +1,7 @@
 import './styles/main.scss';
 import {
-  add, render, remove, edit, move, TODO, clearAll
+  add, render, remove, edit, move, TODO,
 } from './module/addremove.js';
-
 
 const addButton = document.querySelector('.add-button');
 addButton.addEventListener('click', () => {
@@ -73,12 +72,6 @@ tasksContainer.addEventListener('click', (event) => {
     todo.strikeThrough(index);
     render();
   }
-});
-
-const clearAllButton = document.querySelector('.clear-all-completed');
-clearAllButton.addEventListener('click', () => {
-  clearAll();
-  render();
 });
 
 tasksContainer.addEventListener('click', (event) => {
