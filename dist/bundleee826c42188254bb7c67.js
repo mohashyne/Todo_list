@@ -1,20 +1,23 @@
 /******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
 /***/ "./src/module/addremove.js":
 /*!*********************************!*\
   !*** ./src/module/addremove.js ***!
   \*********************************/
-/***/ ((module) => {
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
-function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
-function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   add: () => (/* binding */ add),
+/* harmony export */   edit: () => (/* binding */ edit),
+/* harmony export */   move: () => (/* binding */ move),
+/* harmony export */   remove: () => (/* binding */ remove),
+/* harmony export */   render: () => (/* binding */ render)
+/* harmony export */ });
+var addTask = document.querySelector('.add-task');
 var add = function add() {
-  var addTask = document.getElementById('addTask'); // get the input field element
   if (addTask.value !== '') {
     var tasksArray = JSON.parse(localStorage.getItem('tasksArray')) || [];
     tasksArray.push({
@@ -31,8 +34,8 @@ var add = function add() {
 var remove = function remove(index) {
   var tasksArray = JSON.parse(localStorage.getItem('tasksArray')) || [];
   tasksArray.splice(index, 1);
-  for (var i = index; i < tasksArray.length; i += 1) {
-    tasksArray[i].index = i + 1;
+  for (var i = 1; i <= tasksArray.length; i += 1) {
+    tasksArray[i - 1].index = i;
   }
   localStorage.setItem('tasksArray', JSON.stringify(tasksArray));
 };
@@ -54,55 +57,19 @@ var move = function move(fromIndex, toIndex) {
   }
   localStorage.setItem('tasksArray', JSON.stringify(tasksArray));
 };
+var tasksContainer = document.querySelector('.list-container');
 var render = function render() {
-  var tasksContainer = document.querySelector('.list-container');
   var tasksArray = JSON.parse(localStorage.getItem('tasksArray')) || [];
   tasksArray.sort(function (a, b) {
     return a.index - b.index;
   });
   tasksContainer.innerHTML = '';
-  var checked = '';
-  var strike = '';
   for (var i = 0; i < tasksArray.length; i += 1) {
-    if (tasksArray[i].completed) {
-      checked = 'checked';
-      strike = 'strike-through';
-    } else {
-      checked = '';
-      strike = '';
-    }
-    var html = "\n      <div class=\"task\">\n        <input type=\"checkbox\" class=\"checkbox-input\" ".concat(checked, ">\n        <input type=\"text\" class=\"text-input ").concat(strike, "\" value=\"").concat(tasksArray[i].description, "\">\n        <div class=\"delete-task-icon\">&#x1F5D1;</div>\n        <!-- <div class=\"drag-to-order\">&#x22EE;</div> -->        \n      </div>\n      <hr>\n    ");
+    var html = "\n      <div class=\"task\" draggable=\"true\" data-index=\"".concat(i, "\">\n        <input type=\"checkbox\" class=\"checkbox-input\">\n        <input type=\"text\" class=\"text-input\" value=\"").concat(tasksArray[i].description, "\">\n        <div class=\"delete-task-icon\">&#x1F5D1;</div>\n        <!-- <div class=\"drag-to-order\">&#x22EE;</div> -->        \n      </div>\n      <hr>\n    ");
     tasksContainer.innerHTML += html;
   }
 };
-var TODO = /*#__PURE__*/function () {
-  function TODO() {
-    _classCallCheck(this, TODO);
-  }
-  _createClass(TODO, [{
-    key: "strikeThrough",
-    value: function strikeThrough(index) {
-      this.tasksArray = JSON.parse(localStorage.getItem('tasksArray')) || [];
-      var checkBoxes = document.querySelectorAll('.checkbox-input');
-      if (checkBoxes[index].checked) {
-        this.tasksArray[index].completed = true;
-        localStorage.setItem('tasksArray', JSON.stringify(this.tasksArray));
-      } else {
-        this.tasksArray[index].completed = false;
-        localStorage.setItem('tasksArray', JSON.stringify(this.tasksArray));
-      }
-    }
-  }]);
-  return TODO;
-}();
-module.exports = {
-  add: add,
-  render: render,
-  remove: remove,
-  edit: edit,
-  move: move,
-  TODO: TODO
-};
+
 
 /***/ }),
 
@@ -112,7 +79,6 @@ module.exports = {
   \***********************************************************************************************************/
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -245,7 +211,6 @@ footer:hover {
   \*****************************************************/
 /***/ ((module) => {
 
-"use strict";
 
 
 /*
@@ -340,7 +305,6 @@ module.exports = function (cssWithMappingToString) {
   \************************************************************/
 /***/ ((module) => {
 
-"use strict";
 
 
 module.exports = function (item) {
@@ -366,7 +330,6 @@ module.exports = function (item) {
   \******************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -421,7 +384,6 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
   \****************************************************************************/
 /***/ ((module) => {
 
-"use strict";
 
 
 var stylesInDOM = [];
@@ -515,7 +477,6 @@ module.exports = function (list, options) {
   \********************************************************************/
 /***/ ((module) => {
 
-"use strict";
 
 
 var memo = {};
@@ -559,7 +520,6 @@ module.exports = insertBySelector;
   \**********************************************************************/
 /***/ ((module) => {
 
-"use strict";
 
 
 /* istanbul ignore next  */
@@ -579,7 +539,6 @@ module.exports = insertStyleElement;
   \**********************************************************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-"use strict";
 
 
 /* istanbul ignore next  */
@@ -599,7 +558,6 @@ module.exports = setAttributesWithoutAttributes;
   \***************************************************************/
 /***/ ((module) => {
 
-"use strict";
 
 
 /* istanbul ignore next  */
@@ -670,7 +628,6 @@ module.exports = domAPI;
   \*********************************************************************/
 /***/ ((module) => {
 
-"use strict";
 
 
 /* istanbul ignore next  */
@@ -762,16 +719,14 @@ module.exports = styleTagTransform;
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
-// This entry need to be wrapped in an IIFE because it need to be in strict mode.
+// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
 (() => {
-"use strict";
 /*!**********************!*\
   !*** ./src/index.js ***!
   \**********************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _styles_main_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./styles/main.scss */ "./src/styles/main.scss");
 /* harmony import */ var _module_addremove_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./module/addremove.js */ "./src/module/addremove.js");
-/* harmony import */ var _module_addremove_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_module_addremove_js__WEBPACK_IMPORTED_MODULE_1__);
 
 
 var addButton = document.querySelector('.add-button');
@@ -779,64 +734,14 @@ addButton.addEventListener('click', function () {
   (0,_module_addremove_js__WEBPACK_IMPORTED_MODULE_1__.add)();
   (0,_module_addremove_js__WEBPACK_IMPORTED_MODULE_1__.render)();
 });
-var addTask = document.getElementById('addTask');
+var addTask = document.querySelector('.add-task');
 addTask.addEventListener('keydown', function (event) {
-  if (event.key === 'Enter') {
+  if (event.keyCode === 13) {
     (0,_module_addremove_js__WEBPACK_IMPORTED_MODULE_1__.add)();
     (0,_module_addremove_js__WEBPACK_IMPORTED_MODULE_1__.render)();
   }
 });
 var tasksContainer = document.querySelector('.list-container');
-tasksContainer.addEventListener('click', function (event) {
-  var deleteTaskIcon = event.target.closest('.delete-task-icon');
-  if (deleteTaskIcon) {
-    var deleteTaskIcons = tasksContainer.querySelectorAll('.delete-task-icon');
-    Array.from(deleteTaskIcons).indexOf(deleteTaskIcon);
-    (0,_module_addremove_js__WEBPACK_IMPORTED_MODULE_1__.render)();
-  }
-});
-tasksContainer.addEventListener('click', function (event) {
-  var textInput = event.target.closest('.text-input');
-  if (textInput) {
-    var textInputs = tasksContainer.querySelectorAll('.text-input');
-    var index = Array.from(textInputs).indexOf(textInput);
-    (0,_module_addremove_js__WEBPACK_IMPORTED_MODULE_1__.edit)(index);
-  }
-});
-tasksContainer.addEventListener('dragstart', function (event) {
-  var taskDiv = event.target.closest('.task');
-  taskDiv.classList.add('dragging');
-  event.dataTransfer.effectAllowed = 'move';
-  event.dataTransfer.setData('text/plain', taskDiv.getAttribute('data-index'));
-});
-tasksContainer.addEventListener('dragover', function (event) {
-  event.preventDefault();
-  var draggingTask = document.querySelector('.dragging');
-  var closestTask = event.target.closest('.task');
-  if (closestTask !== draggingTask && closestTask) {
-    var draggingIndex = parseInt(draggingTask.getAttribute('data-index'), 10);
-    var closestIndex = parseInt(closestTask.getAttribute('data-index'), 10);
-    if (draggingIndex < closestIndex) {
-      closestTask.parentNode.insertBefore(draggingTask, closestTask.nextSibling);
-      (0,_module_addremove_js__WEBPACK_IMPORTED_MODULE_1__.move)(draggingIndex - 1, closestIndex - 1);
-    } else {
-      closestTask.parentNode.insertBefore(draggingTask, closestTask);
-      (0,_module_addremove_js__WEBPACK_IMPORTED_MODULE_1__.move)(draggingIndex - 1, closestIndex);
-    }
-    draggingTask.setAttribute('data-index', closestIndex);
-    closestTask.setAttribute('data-index', draggingIndex);
-  }
-});
-var todo = new _module_addremove_js__WEBPACK_IMPORTED_MODULE_1__.TODO();
-tasksContainer.addEventListener('click', function (event) {
-  var checkBox = event.target.closest('.checkbox-input');
-  if (checkBox) {
-    var checkBoxes = tasksContainer.querySelectorAll('.checkbox-input');
-    var index = Array.from(checkBoxes).indexOf(checkBox);
-    todo.strikeThrough(index);
-    (0,_module_addremove_js__WEBPACK_IMPORTED_MODULE_1__.render)();
-  }
-});
 tasksContainer.addEventListener('click', function (event) {
   var deleteTaskIcon = event.target.closest('.delete-task-icon');
   if (deleteTaskIcon) {
@@ -883,4 +788,4 @@ window.onload = _module_addremove_js__WEBPACK_IMPORTED_MODULE_1__.render;
 
 /******/ })()
 ;
-//# sourceMappingURL=bundleb54a4d2e6cf7098ad599.js.map
+//# sourceMappingURL=bundleee826c42188254bb7c67.js.map
