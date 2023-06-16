@@ -1,23 +1,81 @@
 /******/ (() => { // webpackBootstrap
-/******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
 /***/ "./src/module/addremove.js":
 /*!*********************************!*\
   !*** ./src/module/addremove.js ***!
   \*********************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+/***/ ((module) => {
 
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   add: () => (/* binding */ add),
-/* harmony export */   edit: () => (/* binding */ edit),
-/* harmony export */   move: () => (/* binding */ move),
-/* harmony export */   remove: () => (/* binding */ remove),
-/* harmony export */   render: () => (/* binding */ render)
-/* harmony export */ });
-var addTask = document.querySelector('.add-task');
+// const addTask = document.querySelector('.add-task');
+//
+// const add = () => {
+//   if (addTask.value !== '') {
+//     const tasksArray = JSON.parse(localStorage.getItem('tasksArray')) || [];
+//     tasksArray.push({ completed: false, description: addTask.value });
+//     for (let i = 1; i <= tasksArray.length; i += 1) {
+//       tasksArray[i - 1].index = i;
+//     }
+//     localStorage.setItem('tasksArray', JSON.stringify(tasksArray));
+//   }
+//   addTask.value = '';
+// };
+//
+// const remove = (index) => {
+//   const tasksArray = JSON.parse(localStorage.getItem('tasksArray')) || [];
+//   tasksArray.splice(index, 1);
+//   for (let i = 1; i <= tasksArray.length; i += 1) {
+//     tasksArray[i - 1].index = i;
+//   }
+//   localStorage.setItem('tasksArray', JSON.stringify(tasksArray));
+// };
+//
+// const edit = (index) => {
+//   const tasksArray = JSON.parse(localStorage.getItem('tasksArray')) || [];
+//   const textInputs = document.querySelectorAll('.text-input');
+//   textInputs[index].addEventListener('change', () => {
+//     tasksArray[index].description = textInputs[index].value;
+//     localStorage.setItem('tasksArray', JSON.stringify(tasksArray));
+//   });
+// };
+//
+// const move = (fromIndex, toIndex) => {
+//   const tasksArray = JSON.parse(localStorage.getItem('tasksArray')) || [];
+//   const taskToMove = tasksArray[fromIndex];
+//   tasksArray.splice(fromIndex, 1);
+//   tasksArray.splice(toIndex, 0, taskToMove);
+//   for (let i = 1; i <= tasksArray.length; i += 1) {
+//     tasksArray[i - 1].index = i;
+//   }
+//   localStorage.setItem('tasksArray', JSON.stringify(tasksArray));
+// };
+//
+// const tasksContainer = document.querySelector('.list-container');
+//
+// const render = () => {
+//   const tasksArray = JSON.parse(localStorage.getItem('tasksArray')) || [];
+//   tasksArray.sort((a, b) => a.index - b.index);
+//   tasksContainer.innerHTML = '';
+//   for (let i = 0; i < tasksArray.length; i += 1) {
+//     const html = `
+//       <div class="task" draggable="true" data-index="${i}">
+//         <input type="checkbox" class="checkbox-input">
+//         <input type="text" class="text-input" value="${tasksArray[i].description}">
+//         <div class="delete-task-icon">&#x1F5D1;</div>
+//         <!-- <div class="drag-to-order">&#x22EE;</div> -->
+//       </div>
+//       <hr>
+//     `;
+//     tasksContainer.innerHTML += html;
+//   }
+// };
+//
+// export {
+//   add, render, remove, edit, move,
+// };
+
 var add = function add() {
+  var addTask = document.getElementById('addTask'); // get the input field element
   if (addTask.value !== '') {
     var tasksArray = JSON.parse(localStorage.getItem('tasksArray')) || [];
     tasksArray.push({
@@ -57,19 +115,86 @@ var move = function move(fromIndex, toIndex) {
   }
   localStorage.setItem('tasksArray', JSON.stringify(tasksArray));
 };
-var tasksContainer = document.querySelector('.list-container');
 var render = function render() {
+  var tasksContainer = document.querySelector('.list-container');
   var tasksArray = JSON.parse(localStorage.getItem('tasksArray')) || [];
   tasksArray.sort(function (a, b) {
     return a.index - b.index;
   });
   tasksContainer.innerHTML = '';
+  var checked = '';
+  var strike = '';
   for (var i = 0; i < tasksArray.length; i += 1) {
-    var html = "\n      <div class=\"task\" draggable=\"true\" data-index=\"".concat(i, "\">\n        <input type=\"checkbox\" class=\"checkbox-input\">\n        <input type=\"text\" class=\"text-input\" value=\"").concat(tasksArray[i].description, "\">\n        <div class=\"delete-task-icon\">&#x1F5D1;</div>\n        <!-- <div class=\"drag-to-order\">&#x22EE;</div> -->        \n      </div>\n      <hr>\n    ");
+    if (tasksArray[i].completed) {
+      checked = 'checked';
+      strike = 'strike-through';
+    } else {
+      checked = '';
+      strike = '';
+    }
+    var html = "\n      <div class=\"task\">\n        <input type=\"checkbox\" class=\"checkbox-input\" ".concat(checked, ">\n        <input type=\"text\" class=\"text-input ").concat(strike, "\" value=\"").concat(tasksArray[i].description, "\">\n        <div class=\"delete-task-icon\">&#x1F5D1;</div>\n        <!-- <div class=\"drag-to-order\">&#x22EE;</div> -->        \n      </div>\n      <hr>\n    ");
     tasksContainer.innerHTML += html;
   }
 };
+module.exports = {
+  add: add,
+  render: render,
+  remove: remove,
+  edit: edit,
+  move: move
+};
 
+/***/ }),
+
+/***/ "./src/module/interactive.js":
+/*!***********************************!*\
+  !*** ./src/module/interactive.js ***!
+  \***********************************/
+/***/ ((module) => {
+
+function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, _toPropertyKey(descriptor.key), descriptor); } }
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); Object.defineProperty(Constructor, "prototype", { writable: false }); return Constructor; }
+function _toPropertyKey(arg) { var key = _toPrimitive(arg, "string"); return _typeof(key) === "symbol" ? key : String(key); }
+function _toPrimitive(input, hint) { if (_typeof(input) !== "object" || input === null) return input; var prim = input[Symbol.toPrimitive]; if (prim !== undefined) { var res = prim.call(input, hint || "default"); if (_typeof(res) !== "object") return res; throw new TypeError("@@toPrimitive must return a primitive value."); } return (hint === "string" ? String : Number)(input); }
+var TODO = /*#__PURE__*/function () {
+  function TODO() {
+    _classCallCheck(this, TODO);
+  }
+  _createClass(TODO, [{
+    key: "strikeThrough",
+    value: function strikeThrough(index) {
+      this.tasksArray = JSON.parse(localStorage.getItem('tasksArray')) || [];
+      var checkBoxes = document.querySelectorAll('.checkbox-input');
+      if (checkBoxes[index].checked) {
+        this.tasksArray[index].completed = true;
+        localStorage.setItem('tasksArray', JSON.stringify(this.tasksArray));
+      } else {
+        this.tasksArray[index].completed = false;
+        localStorage.setItem('tasksArray', JSON.stringify(this.tasksArray));
+      }
+    }
+  }]);
+  return TODO;
+}();
+var clearAll = function clearAll() {
+  var tasksArray = JSON.parse(localStorage.getItem('tasksArray')) || [];
+  for (var i = 0; i < tasksArray.length; i += 1) {
+    if (tasksArray[i].completed) {
+      tasksArray.splice(i, 1);
+      i -= 1;
+    }
+  }
+  for (var _i = 1; _i <= tasksArray.length; _i += 1) {
+    tasksArray[_i - 1].index = _i;
+  }
+  localStorage.setItem('tasksArray', JSON.stringify(tasksArray));
+};
+module.exports = {
+  TODO: TODO,
+  clearAll: clearAll
+};
 
 /***/ }),
 
@@ -79,6 +204,7 @@ var render = function render() {
   \***********************************************************************************************************/
 /***/ ((module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -211,6 +337,7 @@ footer:hover {
   \*****************************************************/
 /***/ ((module) => {
 
+"use strict";
 
 
 /*
@@ -305,6 +432,7 @@ module.exports = function (cssWithMappingToString) {
   \************************************************************/
 /***/ ((module) => {
 
+"use strict";
 
 
 module.exports = function (item) {
@@ -330,6 +458,7 @@ module.exports = function (item) {
   \******************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
+"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
@@ -384,6 +513,7 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
   \****************************************************************************/
 /***/ ((module) => {
 
+"use strict";
 
 
 var stylesInDOM = [];
@@ -477,6 +607,7 @@ module.exports = function (list, options) {
   \********************************************************************/
 /***/ ((module) => {
 
+"use strict";
 
 
 var memo = {};
@@ -520,6 +651,7 @@ module.exports = insertBySelector;
   \**********************************************************************/
 /***/ ((module) => {
 
+"use strict";
 
 
 /* istanbul ignore next  */
@@ -539,6 +671,7 @@ module.exports = insertStyleElement;
   \**********************************************************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
+"use strict";
 
 
 /* istanbul ignore next  */
@@ -558,6 +691,7 @@ module.exports = setAttributesWithoutAttributes;
   \***************************************************************/
 /***/ ((module) => {
 
+"use strict";
 
 
 /* istanbul ignore next  */
@@ -628,6 +762,7 @@ module.exports = domAPI;
   \*********************************************************************/
 /***/ ((module) => {
 
+"use strict";
 
 
 /* istanbul ignore next  */
@@ -719,14 +854,92 @@ module.exports = styleTagTransform;
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
-// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
+// This entry need to be wrapped in an IIFE because it need to be in strict mode.
 (() => {
+"use strict";
 /*!**********************!*\
   !*** ./src/index.js ***!
   \**********************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _styles_main_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./styles/main.scss */ "./src/styles/main.scss");
 /* harmony import */ var _module_addremove_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./module/addremove.js */ "./src/module/addremove.js");
+/* harmony import */ var _module_addremove_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_module_addremove_js__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _module_interactive_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./module/interactive.js */ "./src/module/interactive.js");
+/* harmony import */ var _module_interactive_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_module_interactive_js__WEBPACK_IMPORTED_MODULE_2__);
+// import './styles/main.scss';
+//
+// import {
+//   add, render, remove, edit, move,
+// } from './module/addremove.js';
+//
+// import {
+//   TODO,
+// } from './module/interactive.js';
+//
+// const addButton = document.querySelector('.add-button');
+// addButton.addEventListener('click', () => {
+//   add();
+//   render();
+// });
+//
+// const addTask = document.querySelector('.add-task');
+// addTask.addEventListener('keydown', (event) => {
+//   if (event.keyCode === 13) {
+//     add();
+//     render();
+//   }
+// });
+//
+// const tasksContainer = document.querySelector('.list-container');
+//
+// tasksContainer.addEventListener('click', (event) => {
+//   const deleteTaskIcon = event.target.closest('.delete-task-icon');
+//   if (deleteTaskIcon) {
+//     const deleteTaskIcons = tasksContainer.querySelectorAll('.delete-task-icon');
+//     const index = Array.from(deleteTaskIcons).indexOf(deleteTaskIcon);
+//     remove(index);
+//     render();
+//   }
+// });
+//
+// tasksContainer.addEventListener('click', (event) => {
+//   const textInput = event.target.closest('.text-input');
+//   if (textInput) {
+//     const textInputs = tasksContainer.querySelectorAll('.text-input');
+//     const index = Array.from(textInputs).indexOf(textInput);
+//     edit(index);
+//   }
+// });
+//
+// tasksContainer.addEventListener('dragstart', (event) => {
+//   const taskDiv = event.target.closest('.task');
+//   taskDiv.classList.add('dragging');
+//   event.dataTransfer.effectAllowed = 'move';
+//   event.dataTransfer.setData('text/plain', taskDiv.getAttribute('data-index'));
+// });
+//
+// tasksContainer.addEventListener('dragover', (event) => {
+//   event.preventDefault();
+//   const draggingTask = document.querySelector('.dragging');
+//   const closestTask = event.target.closest('.task');
+//   if (closestTask !== draggingTask && closestTask) {
+//     const draggingIndex = parseInt(draggingTask.getAttribute('data-index'), 10);
+//     const closestIndex = parseInt(closestTask.getAttribute('data-index'), 10);
+//     if (draggingIndex < closestIndex) {
+//       closestTask.parentNode.insertBefore(draggingTask, closestTask.nextSibling);
+//       move(draggingIndex - 1, closestIndex - 1);
+//     } else {
+//       closestTask.parentNode.insertBefore(draggingTask, closestTask);
+//       move(draggingIndex - 1, closestIndex);
+//     }
+//     draggingTask.setAttribute('data-index', closestIndex);
+//     closestTask.setAttribute('data-index', draggingIndex);
+//   }
+// });
+//
+// window.onload = render;
+
+
 
 
 var addButton = document.querySelector('.add-button');
@@ -734,14 +947,69 @@ addButton.addEventListener('click', function () {
   (0,_module_addremove_js__WEBPACK_IMPORTED_MODULE_1__.add)();
   (0,_module_addremove_js__WEBPACK_IMPORTED_MODULE_1__.render)();
 });
-var addTask = document.querySelector('.add-task');
+var addTask = document.getElementById('addTask');
 addTask.addEventListener('keydown', function (event) {
-  if (event.keyCode === 13) {
+  if (event.key === 'Enter') {
     (0,_module_addremove_js__WEBPACK_IMPORTED_MODULE_1__.add)();
     (0,_module_addremove_js__WEBPACK_IMPORTED_MODULE_1__.render)();
   }
 });
 var tasksContainer = document.querySelector('.list-container');
+tasksContainer.addEventListener('click', function (event) {
+  var deleteTaskIcon = event.target.closest('.delete-task-icon');
+  if (deleteTaskIcon) {
+    var deleteTaskIcons = tasksContainer.querySelectorAll('.delete-task-icon');
+    Array.from(deleteTaskIcons).indexOf(deleteTaskIcon);
+    (0,_module_addremove_js__WEBPACK_IMPORTED_MODULE_1__.render)();
+  }
+});
+tasksContainer.addEventListener('click', function (event) {
+  var textInput = event.target.closest('.text-input');
+  if (textInput) {
+    var textInputs = tasksContainer.querySelectorAll('.text-input');
+    var index = Array.from(textInputs).indexOf(textInput);
+    (0,_module_addremove_js__WEBPACK_IMPORTED_MODULE_1__.edit)(index);
+  }
+});
+tasksContainer.addEventListener('dragstart', function (event) {
+  var taskDiv = event.target.closest('.task');
+  taskDiv.classList.add('dragging');
+  event.dataTransfer.effectAllowed = 'move';
+  event.dataTransfer.setData('text/plain', taskDiv.getAttribute('data-index'));
+});
+tasksContainer.addEventListener('dragover', function (event) {
+  event.preventDefault();
+  var draggingTask = document.querySelector('.dragging');
+  var closestTask = event.target.closest('.task');
+  if (closestTask !== draggingTask && closestTask) {
+    var draggingIndex = parseInt(draggingTask.getAttribute('data-index'), 10);
+    var closestIndex = parseInt(closestTask.getAttribute('data-index'), 10);
+    if (draggingIndex < closestIndex) {
+      closestTask.parentNode.insertBefore(draggingTask, closestTask.nextSibling);
+      (0,_module_addremove_js__WEBPACK_IMPORTED_MODULE_1__.move)(draggingIndex - 1, closestIndex - 1);
+    } else {
+      closestTask.parentNode.insertBefore(draggingTask, closestTask);
+      (0,_module_addremove_js__WEBPACK_IMPORTED_MODULE_1__.move)(draggingIndex - 1, closestIndex);
+    }
+    draggingTask.setAttribute('data-index', closestIndex);
+    closestTask.setAttribute('data-index', draggingIndex);
+  }
+});
+var todo = new _module_interactive_js__WEBPACK_IMPORTED_MODULE_2__.TODO();
+tasksContainer.addEventListener('click', function (event) {
+  var checkBox = event.target.closest('.checkbox-input');
+  if (checkBox) {
+    var checkBoxes = tasksContainer.querySelectorAll('.checkbox-input');
+    var index = Array.from(checkBoxes).indexOf(checkBox);
+    todo.strikeThrough(index);
+    (0,_module_addremove_js__WEBPACK_IMPORTED_MODULE_1__.render)();
+  }
+});
+var clearAllButton = document.querySelector('.clear-all-completed');
+clearAllButton.addEventListener('click', function () {
+  (0,_module_interactive_js__WEBPACK_IMPORTED_MODULE_2__.clearAll)();
+  (0,_module_addremove_js__WEBPACK_IMPORTED_MODULE_1__.render)();
+});
 tasksContainer.addEventListener('click', function (event) {
   var deleteTaskIcon = event.target.closest('.delete-task-icon');
   if (deleteTaskIcon) {
@@ -788,4 +1056,4 @@ window.onload = _module_addremove_js__WEBPACK_IMPORTED_MODULE_1__.render;
 
 /******/ })()
 ;
-//# sourceMappingURL=bundleee826c42188254bb7c67.js.map
+//# sourceMappingURL=bundle5fde7241031871963dbe.js.map
