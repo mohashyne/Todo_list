@@ -14,8 +14,8 @@ const add = () => {
 const remove = (index) => {
   const tasksArray = JSON.parse(localStorage.getItem('tasksArray')) || [];
   tasksArray.splice(index, 1);
-  for (let i = 1; i <= tasksArray.length; i += 1) {
-    tasksArray[i - 1].index = i;
+  for (let i = 0; i < tasksArray.length; i += 1) {
+    tasksArray[i].index = i + 1;
   }
   localStorage.setItem('tasksArray', JSON.stringify(tasksArray));
 };
