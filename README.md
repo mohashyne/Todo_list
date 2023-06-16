@@ -9,7 +9,6 @@
     - [🛠 Built With](#built-with)
         - [Tech Stack](#tech-stack)
         - [Key Features](#key-features)
-    - [🚀 Live Video](#live-video)
 - [💻 Getting Started](#getting-started)
     - [Setup](#setup)
     - [Prerequisites](#prerequisites)
@@ -63,11 +62,6 @@
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
-<!-- ## 🚀 Live Video Coming soon <a name="live-video"></a> -->
-
-<!-- <p>Come back soon for the video link
-<a href="https://drive.google.com/drive/"> previous projects video link </a></p>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p> -->
 
