@@ -1,10 +1,8 @@
 import './styles/main.scss';
 
-import {
-  add, render, remove, edit, move,
-} from './module/addremove.js';
+import { add, render, remove, edit, move, } from './module/addremove.js';
 
-import { TODO, clearAll } from './module/interactive.js';
+import { TODO, clearAll, } from './module/interactive.js';
 
 const addButton = document.querySelector('.add-button');
 addButton.addEventListener('click', () => {
