@@ -5,7 +5,7 @@ import {
 } from './module/addremove';
 
 import {
-  TODO, clearAll
+  TODO, clearAll,
 } from './module/interactive';
 
 const addButton = document.querySelector('.add-button');
