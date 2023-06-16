@@ -9,9 +9,7 @@
     - [🛠 Built With](#built-with)
         - [Tech Stack](#tech-stack)
         - [Key Features](#key-features)
-    - [🚀 Live Demo](#live-demo)
     - [🚀 Live Video](#live-video)
-    - [Project Outline](#project-outline)
 - [💻 Getting Started](#getting-started)
     - [Setup](#setup)
     - [Prerequisites](#prerequisites)
@@ -66,16 +64,15 @@
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-<!-- ## 🚀 Live Demo <a name="live-demo"></a> -->
-
-<!-- <p>For Live demo Coming soon
-<a href="https://github.com/mohashyne/Todo_list"> Github link </a></p> -->
 
 <!-- ## 🚀 Live Video Coming soon <a name="live-video"></a> -->
 
 <!-- <p>Come back soon for the video link
 <a href="https://drive.google.com/drive/"> previous projects video link </a></p>
-## 💻 Getting Started <a name="getting-started"></a> -->
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p> -->
+
+## 💻 Getting Started <a name="getting-started"></a>
 
 To get a local copy up and running, follow these steps.
 
@@ -157,7 +154,7 @@ Please note that it may take a few moments for GitHub Pages to build and deploy 
 👤 **Muhammad Aminu Salihu**
 
 - GitHub: [@mohashyne](https://github.com/mohashyne)
-- Twitter: [@muhammadslyhu](https://twitter.com/muhammadslyhu)
+- Twitter: [@muhammadslyhu](https://twitter.com/muhammadsalyhu)
 - LinkedIn: [muhammad-salihu-27467a165](https://linkedin.com/in/muhammad-salihu-27467a165)
 
 
