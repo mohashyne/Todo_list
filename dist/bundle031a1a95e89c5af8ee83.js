@@ -7,73 +7,6 @@
   \*********************************/
 /***/ ((module) => {
 
-// const addTask = document.querySelector('.add-task');
-//
-// const add = () => {
-//   if (addTask.value !== '') {
-//     const tasksArray = JSON.parse(localStorage.getItem('tasksArray')) || [];
-//     tasksArray.push({ completed: false, description: addTask.value });
-//     for (let i = 1; i <= tasksArray.length; i += 1) {
-//       tasksArray[i - 1].index = i;
-//     }
-//     localStorage.setItem('tasksArray', JSON.stringify(tasksArray));
-//   }
-//   addTask.value = '';
-// };
-//
-// const remove = (index) => {
-//   const tasksArray = JSON.parse(localStorage.getItem('tasksArray')) || [];
-//   tasksArray.splice(index, 1);
-//   for (let i = 1; i <= tasksArray.length; i += 1) {
-//     tasksArray[i - 1].index = i;
-//   }
-//   localStorage.setItem('tasksArray', JSON.stringify(tasksArray));
-// };
-//
-// const edit = (index) => {
-//   const tasksArray = JSON.parse(localStorage.getItem('tasksArray')) || [];
-//   const textInputs = document.querySelectorAll('.text-input');
-//   textInputs[index].addEventListener('change', () => {
-//     tasksArray[index].description = textInputs[index].value;
-//     localStorage.setItem('tasksArray', JSON.stringify(tasksArray));
-//   });
-// };
-//
-// const move = (fromIndex, toIndex) => {
-//   const tasksArray = JSON.parse(localStorage.getItem('tasksArray')) || [];
-//   const taskToMove = tasksArray[fromIndex];
-//   tasksArray.splice(fromIndex, 1);
-//   tasksArray.splice(toIndex, 0, taskToMove);
-//   for (let i = 1; i <= tasksArray.length; i += 1) {
-//     tasksArray[i - 1].index = i;
-//   }
-//   localStorage.setItem('tasksArray', JSON.stringify(tasksArray));
-// };
-//
-// const tasksContainer = document.querySelector('.list-container');
-//
-// const render = () => {
-//   const tasksArray = JSON.parse(localStorage.getItem('tasksArray')) || [];
-//   tasksArray.sort((a, b) => a.index - b.index);
-//   tasksContainer.innerHTML = '';
-//   for (let i = 0; i < tasksArray.length; i += 1) {
-//     const html = `
-//       <div class="task" draggable="true" data-index="${i}">
-//         <input type="checkbox" class="checkbox-input">
-//         <input type="text" class="text-input" value="${tasksArray[i].description}">
-//         <div class="delete-task-icon">&#x1F5D1;</div>
-//         <!-- <div class="drag-to-order">&#x22EE;</div> -->
-//       </div>
-//       <hr>
-//     `;
-//     tasksContainer.innerHTML += html;
-//   }
-// };
-//
-// export {
-//   add, render, remove, edit, move,
-// };
-
 var add = function add() {
   var addTask = document.getElementById('addTask'); // get the input field element
   if (addTask.value !== '') {
@@ -866,79 +799,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _module_addremove_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_module_addremove_js__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _module_interactive_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./module/interactive.js */ "./src/module/interactive.js");
 /* harmony import */ var _module_interactive_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_module_interactive_js__WEBPACK_IMPORTED_MODULE_2__);
-// import './styles/main.scss';
-//
-// import {
-//   add, render, remove, edit, move,
-// } from './module/addremove.js';
-//
-// import {
-//   TODO,
-// } from './module/interactive.js';
-//
-// const addButton = document.querySelector('.add-button');
-// addButton.addEventListener('click', () => {
-//   add();
-//   render();
-// });
-//
-// const addTask = document.querySelector('.add-task');
-// addTask.addEventListener('keydown', (event) => {
-//   if (event.keyCode === 13) {
-//     add();
-//     render();
-//   }
-// });
-//
-// const tasksContainer = document.querySelector('.list-container');
-//
-// tasksContainer.addEventListener('click', (event) => {
-//   const deleteTaskIcon = event.target.closest('.delete-task-icon');
-//   if (deleteTaskIcon) {
-//     const deleteTaskIcons = tasksContainer.querySelectorAll('.delete-task-icon');
-//     const index = Array.from(deleteTaskIcons).indexOf(deleteTaskIcon);
-//     remove(index);
-//     render();
-//   }
-// });
-//
-// tasksContainer.addEventListener('click', (event) => {
-//   const textInput = event.target.closest('.text-input');
-//   if (textInput) {
-//     const textInputs = tasksContainer.querySelectorAll('.text-input');
-//     const index = Array.from(textInputs).indexOf(textInput);
-//     edit(index);
-//   }
-// });
-//
-// tasksContainer.addEventListener('dragstart', (event) => {
-//   const taskDiv = event.target.closest('.task');
-//   taskDiv.classList.add('dragging');
-//   event.dataTransfer.effectAllowed = 'move';
-//   event.dataTransfer.setData('text/plain', taskDiv.getAttribute('data-index'));
-// });
-//
-// tasksContainer.addEventListener('dragover', (event) => {
-//   event.preventDefault();
-//   const draggingTask = document.querySelector('.dragging');
-//   const closestTask = event.target.closest('.task');
-//   if (closestTask !== draggingTask && closestTask) {
-//     const draggingIndex = parseInt(draggingTask.getAttribute('data-index'), 10);
-//     const closestIndex = parseInt(closestTask.getAttribute('data-index'), 10);
-//     if (draggingIndex < closestIndex) {
-//       closestTask.parentNode.insertBefore(draggingTask, closestTask.nextSibling);
-//       move(draggingIndex - 1, closestIndex - 1);
-//     } else {
-//       closestTask.parentNode.insertBefore(draggingTask, closestTask);
-//       move(draggingIndex - 1, closestIndex);
-//     }
-//     draggingTask.setAttribute('data-index', closestIndex);
-//     closestTask.setAttribute('data-index', draggingIndex);
-//   }
-// });
-//
-// window.onload = render;
-
 
 
 
@@ -1056,4 +916,4 @@ window.onload = _module_addremove_js__WEBPACK_IMPORTED_MODULE_1__.render;
 
 /******/ })()
 ;
-//# sourceMappingURL=bundle5fde7241031871963dbe.js.map
+//# sourceMappingURL=bundle031a1a95e89c5af8ee83.js.map
