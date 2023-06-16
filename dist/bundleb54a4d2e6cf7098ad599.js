@@ -31,7 +31,7 @@ var add = function add() {
 var remove = function remove(index) {
   var tasksArray = JSON.parse(localStorage.getItem('tasksArray')) || [];
   tasksArray.splice(index, 1);
-  for (var i = 0; i < tasksArray.length; i += 1) {
+  for (var i = index; i < tasksArray.length; i += 1) {
     tasksArray[i].index = i + 1;
   }
   localStorage.setItem('tasksArray', JSON.stringify(tasksArray));
@@ -883,4 +883,4 @@ window.onload = _module_addremove_js__WEBPACK_IMPORTED_MODULE_1__.render;
 
 /******/ })()
 ;
-//# sourceMappingURL=bundle10ca2630b37007dd43f2.js.map
+//# sourceMappingURL=bundleb54a4d2e6cf7098ad599.js.map
