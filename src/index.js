@@ -1,5 +1,5 @@
-
 import './styles/main.scss';
+
 import {
   add, render, remove, edit, move,
 } from './module/addremove.js';

@@ -1,4 +1,3 @@
-
 const add = () => {
   const addTask = document.getElementById('addTask'); // get the input field element
   if (addTask.value !== '') {
