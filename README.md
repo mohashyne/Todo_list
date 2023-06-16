@@ -1,6 +1,6 @@
 <div align="center">
  <img src="./src/assets/to-do-list.svg" alt="logo" width="140"  height="auto" />
-  <h3><b>HTML, CSS and JavaScript Book List Storage Website</b></h3>
+  <h3><b>Todo List</b></h3>
 </div>
 
 # 📗 Table of Contents
